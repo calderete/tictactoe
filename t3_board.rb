@@ -17,7 +17,7 @@ class Board
 	def update_board(pick, mark)
 		@board[pick -1] = mark
 		board = @board
-		binding.pry
+		#binding.pry
 		show_board(board)
 	end
 

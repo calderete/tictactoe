@@ -11,6 +11,9 @@ class T3
 		@board = Board.new
 	end
 
+	def game_over
+	end
+
 	def greeting
 		puts "Is player one a 1: human, or 2: computer"
 		choice = gets.chomp.to_i
@@ -27,32 +30,23 @@ class T3
 		else
 			@player2 = ComputerPlayer.new
 		end
-		take_turn
-	end
-
-	def send_to_board(pick, mark)
-		@board.update_board(pick, mark)
-	end
-
-	def take_turn
 		current_player = @player2
-		if current_player = @player2
-			current_player = @player1
-			mark = MARK_1
-		else
-			current_player = @player2
-			mark = MARK_2
-		end
-		pick = current_player.get_pick
-		#binding.pry
-		send_to_board(pick, mark)
+		take_turn(current_player)
 	end
 
-	def t3
+	def take_turn(current_player)
 		until game_over
-			take_turn
-
+			if current_player == @player2
+				current_player = @player1
+				mark = MARK_1
+			else
+				current_player = @player2
+				mark = MARK_2
+			end
+			pick = current_player.get_pick
+			@board.update_board(pick, mark)
 		end
+		
 	end
 end
 

@@ -5,7 +5,7 @@ class ComputerPlayer
 	
 	end
 
-	def make_pick
+	def get_pick
 		pick = rand(1..9)
 	end
 end
