@@ -1,4 +1,4 @@
-require './t3_human_player'
+require './t3_player'
 require './t3_board'
 require 'pry'
 
