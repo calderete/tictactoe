@@ -1,3 +1,4 @@
+require 'set'
 class Board
 	def initialize
 		@board = (1..9).to_a
@@ -17,7 +18,6 @@ class Board
 	def update_board(pick, mark)
 		@board[pick -1] = mark
 		board = @board
-		#binding.pry
 		show_board(board)
 	end
 

@@ -1,3 +1,4 @@
+require 'set'
 require './t3_player'
 require './t3_board'
 require 'pry'
@@ -31,10 +32,23 @@ class T3
 			@player2 = ComputerPlayer.new
 		end
 		current_player = @player2
-		take_turn(current_player)
+		switch_player(current_player)
 	end
 
-	def take_turn(current_player)
+	def move_valid?
+		@moves_left = Set.new
+	end
+
+	def take_turn(current_player, mark)
+		pick = current_player.get_pick
+		
+		@board.update_board(pick, mark)
+		@moves_left.add(pick)
+		binding.pry
+		switch_player(current_player)
+	end
+
+	def switch_player(current_player)
 		until game_over
 			if current_player == @player2
 				current_player = @player1
@@ -43,8 +57,7 @@ class T3
 				current_player = @player2
 				mark = MARK_2
 			end
-			pick = current_player.get_pick
-			@board.update_board(pick, mark)
+			take_turn(current_player, mark)
 		end
 		
 	end
